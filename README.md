@@ -74,7 +74,7 @@ Loading both the simple and complex maps is now as simple as:
 
 ## Real World Example
 
-The commadn class below is taken from a real project and uses the [My Reflection Library](https://github.com/dburriss/PhilosophicalMonkey) and [My ASP.NET Lifecycle Middleware](https://github.com/dburriss/AspNetLifecycle) To load up all mappings at startup of a ASP.NET application.
+The command class below is taken from a real project and uses the [My Reflection Library](https://github.com/dburriss/PhilosophicalMonkey) and [My ASP.NET Lifecycle Middleware](https://github.com/dburriss/AspNetLifecycle) To load up all mappings at startup of a ASP.NET application.
 
     public class AutoMapperSetupTask : IRunAtStartup
     {
