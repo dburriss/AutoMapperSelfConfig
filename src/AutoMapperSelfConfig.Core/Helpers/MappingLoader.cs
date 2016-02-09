@@ -16,14 +16,14 @@ namespace AutoMapperSelfConfig.Core
 
         public static void LoadCustomMappings(IEnumerable<Type> types)
         {
-            var maps = (from t in types
+            var instancesToMap = (from t in types
                         from i in GetInterfaces(t)
                         where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
                               !IsAbstract(t) &&
                               !IsInterface(t)
                         select InitializeCustomMappingObject(t)).ToArray();
 
-            foreach (var map in maps)
+            foreach (var map in instancesToMap)
             {
                 map.CreateMappings(Mapper.Configuration);
             }
@@ -31,10 +31,10 @@ namespace AutoMapperSelfConfig.Core
 
         private static IEnumerable<Type> GetInterfaces(Type type)
         {
-#if DOTNET5_4
-                return type.GetTypeInfo().ImplementedInterfaces;
+#if DOTNET5_4 || DNXCORE50
+            return type.GetTypeInfo().ImplementedInterfaces;
 #endif
-#if NET451
+#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
             return type.GetInterfaces().AsEnumerable();
 #endif
             throw new NotImplementedException();
@@ -42,32 +42,35 @@ namespace AutoMapperSelfConfig.Core
 
         private static bool IsAbstract(Type type)
         {
-#if DOTNET5_4
+#if DOTNET5_4 || DNXCORE50
             return type.GetTypeInfo().IsAbstract;
 #endif
-#if NET451
+#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
             return type.IsAbstract;
 #endif
+            throw new NotImplementedException();
         }
 
         private static bool IsInterface(Type type)
         {
-#if DOTNET5_4
+#if DOTNET5_4 || DNXCORE50
             return type.GetTypeInfo().IsInterface;
 #endif
-#if NET451
+#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
             return type.IsInterface;
 #endif
+            throw new NotImplementedException();
         }
 
         private static bool IsGenericType(Type type)
         {
-#if DOTNET5_4
+#if DOTNET5_4 || DNXCORE50
             return type.GetTypeInfo().IsGenericType;
 #endif
-#if NET451
+#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
             return type.IsGenericType;
 #endif
+            throw new NotImplementedException();
         }
 
         private static IHaveCustomMappings InitializeCustomMappingObject(Type t)
