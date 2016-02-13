@@ -3,8 +3,12 @@ I help create mappings for AutoMapper based on interfaces.
 
 Based on code presented on Pluralsight by @matthoneycutt. He blogs at http://trycatchfail.com/blog.
 
+
 #Usage
 The library provides 3 interfaces and some helper methods.
+
+Install with the following nuget command:
+> `Install-Package AutoMapper.SelfConfig -Pre`
 
 ## IMapFrom<T>
     
