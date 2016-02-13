@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using AutoMapperSelfConfig.Core.Tests.Models;
+using AutoMapper.SelfConfig.Tests.Models;
 using System;
 using Xunit;
 
-namespace AutoMapperSelfConfig.Core.Tests
+namespace AutoMapper.SelfConfig.Tests
 {
     public class MappingLoaderTests
     {

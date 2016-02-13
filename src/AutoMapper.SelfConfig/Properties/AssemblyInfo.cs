@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AutoMapperSelfConfig.Core.Tests")]
+[assembly: AssemblyTitle("AutoMapper.SelfConfig")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AutoMapperSelfConfig.Core.Tests")]
+[assembly: AssemblyProduct("AutoMapper.SelfConfig")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,4 +20,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("940a3cd3-e4b7-4505-98f7-a9126ad6281f")]
+[assembly: Guid("7aece612-920c-4f6c-b667-003cac9922f2")]

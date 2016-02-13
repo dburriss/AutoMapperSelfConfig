@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace AutoMapperSelfConfig.Core
+namespace AutoMapper.SelfConfig
 {
 	public interface IHaveCustomMappings
 	{

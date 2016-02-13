@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace AutoMapperSelfConfig.Core.Tests.Models
+namespace AutoMapper.SelfConfig.Tests.Models
 {
     public class TestConfig : IHaveCustomMappings
     {

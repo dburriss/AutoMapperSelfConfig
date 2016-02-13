@@ -5,11 +5,11 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{294DDB48-4B11-4A56-81B4-8A0C699B59AF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapperSelfConfig.Core", "src\AutoMapperSelfConfig.Core\AutoMapperSelfConfig.Core.xproj", "{7AECE612-920C-4F6C-B667-003CAC9922F2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3EA07F2B-2535-405C-888A-139E8D320EF0}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapperSelfConfig.Core.Tests", "test\AutoMapperSelfConfig.Core.Tests\AutoMapperSelfConfig.Core.Tests.xproj", "{940A3CD3-E4B7-4505-98F7-A9126AD6281F}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig", "src\AutoMapper.SelfConfig\AutoMapper.SelfConfig.xproj", "{7AECE612-920C-4F6C-B667-003CAC9922F2}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig.Tests", "test\AutoMapper.SelfConfig.Tests\AutoMapper.SelfConfig.Tests.xproj", "{940A3CD3-E4B7-4505-98F7-A9126AD6281F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
