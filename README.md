@@ -84,9 +84,9 @@ The command class below is taken from a real project and uses the [My Reflection
     {
         public void Execute()
         {
-            var seedTypes = new Type[] { typeof(Startup), typeof(Tenant) };
-            var assemblies = Reflect.GetAssemblies(seedTypes);
-            var typesInAssemblies = Reflect.GetAllExportedTypes(assemblies);
-            AutoMapperSelfConfig.Core.MappingLoader.LoadAllMappings(typesInAssemblies);
+            var seedTypes = new Type[] { typeof(Startup) };
+            var assemblies = Reflect.OnTypes.GetAssemblies(seedTypes);
+            var typesInAssemblies = Reflect.OnTypes.GetAllExportedTypes(assemblies);
+            AutoMapper.SelfConfig.MappingLoader.LoadAllMappings(typesInAssemblies);
         }
     }
