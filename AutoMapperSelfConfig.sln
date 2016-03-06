@@ -11,6 +11,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig", "sr
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig.Tests", "test\AutoMapper.SelfConfig.Tests\AutoMapper.SelfConfig.Tests.xproj", "{940A3CD3-E4B7-4505-98F7-A9126AD6281F}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig.Tests.Models", "test\AutoMapper.SelfConfig.Tests.Models\AutoMapper.SelfConfig.Tests.Models.xproj", "{42F134FE-F8BB-432E-AEF3-27A7988F1C00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{940A3CD3-E4B7-4505-98F7-A9126AD6281F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{940A3CD3-E4B7-4505-98F7-A9126AD6281F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{940A3CD3-E4B7-4505-98F7-A9126AD6281F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42F134FE-F8BB-432E-AEF3-27A7988F1C00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F134FE-F8BB-432E-AEF3-27A7988F1C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F134FE-F8BB-432E-AEF3-27A7988F1C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F134FE-F8BB-432E-AEF3-27A7988F1C00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7AECE612-920C-4F6C-B667-003CAC9922F2} = {294DDB48-4B11-4A56-81B4-8A0C699B59AF}
 		{940A3CD3-E4B7-4505-98F7-A9126AD6281F} = {3EA07F2B-2535-405C-888A-139E8D320EF0}
+		{42F134FE-F8BB-432E-AEF3-27A7988F1C00} = {3EA07F2B-2535-405C-888A-139E8D320EF0}
 	EndGlobalSection
 EndGlobal

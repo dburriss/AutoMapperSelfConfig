@@ -1,40 +1,59 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace AutoMapper.SelfConfig
 {
-    public class MappingLoader
+    public class MappingConfigFactory
     {
-        public static void LoadAllMappings(IEnumerable<Type> types)
+        public static IMapperConfiguration CreateConfiguration(IEnumerable<Type> types)
         {
-            LoadStandardMappings(types);
-            LoadCustomMappings(types);
+            IMapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                LoadAllMappings(cfg, types);
+            });
+
+            return config;
         }
 
-        public static void LoadCustomMappings(IEnumerable<Type> types)
+        public static void LoadAllMappings(IEnumerable<Type> types)
+        {
+            Mapper.Initialize(
+                cfg =>
+                {
+                    LoadStandardMappings(cfg, types);
+                    LoadCustomMappings(cfg, types);
+                });
+        }
+
+        public static void LoadAllMappings(IMapperConfiguration config, IEnumerable<Type> types)
+        {
+            LoadStandardMappings(config, types);
+            LoadCustomMappings(config, types);
+        }
+
+        public static void LoadCustomMappings(IMapperConfiguration config, IEnumerable<Type> types)
         {
             var instancesToMap = (from t in types
-                        from i in GetInterfaces(t)
-                        where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
-                              !IsAbstract(t) &&
-                              !IsInterface(t)
-                        select InitializeCustomMappingObject(t)).ToArray();
+                                  from i in GetInterfaces(t)
+                                  where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
+                                        !IsAbstract(t) &&
+                                        !IsInterface(t)
+                                  select InitializeCustomMappingObject(t)).ToArray();
 
             foreach (var map in instancesToMap)
             {
-                map.CreateMappings(Mapper.Configuration);
+                map.CreateMappings(config);
             }
         }
 
         private static IEnumerable<Type> GetInterfaces(Type type)
         {
-#if DOTNET5_4 || DNXCORE50
+#if COREFX
             return type.GetTypeInfo().ImplementedInterfaces;
 #endif
-#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
+#if NET
             return type.GetInterfaces().AsEnumerable();
 #endif
             throw new NotImplementedException();
@@ -42,10 +61,10 @@ namespace AutoMapper.SelfConfig
 
         private static bool IsAbstract(Type type)
         {
-#if DOTNET5_4 || DNXCORE50
+#if COREFX
             return type.GetTypeInfo().IsAbstract;
 #endif
-#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
+#if NET
             return type.IsAbstract;
 #endif
             throw new NotImplementedException();
@@ -53,10 +72,10 @@ namespace AutoMapper.SelfConfig
 
         private static bool IsInterface(Type type)
         {
-#if DOTNET5_4 || DNXCORE50
+#if COREFX
             return type.GetTypeInfo().IsInterface;
 #endif
-#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
+#if NET
             return type.IsInterface;
 #endif
             throw new NotImplementedException();
@@ -64,10 +83,10 @@ namespace AutoMapper.SelfConfig
 
         private static bool IsGenericType(Type type)
         {
-#if DOTNET5_4 || DNXCORE50
+#if COREFX
             return type.GetTypeInfo().IsGenericType;
 #endif
-#if NET46 || NET452 || NET451 || DNX46 || DNX452 || DNX451
+#if NET
             return type.IsGenericType;
 #endif
             throw new NotImplementedException();
@@ -78,7 +97,7 @@ namespace AutoMapper.SelfConfig
             return (IHaveCustomMappings)Activator.CreateInstance(t, true);
         }
 
-        public static void LoadStandardMappings(IEnumerable<Type> types)
+        public static void LoadStandardMappings(IMapperConfiguration config, IEnumerable<Type> types)
         {
             var mapsFrom = (from t in types
                             from i in t.GetInterfaces()
@@ -93,12 +112,12 @@ namespace AutoMapper.SelfConfig
 
             foreach (var map in mapsFrom)
             {
-                Mapper.CreateMap(map.Source, map.Destination);
+                config.CreateMap(map.Source, map.Destination);
             }
 
             var mapsTo = (from t in types
                           from i in t.GetInterfaces()
-                          where IsGenericType(i)&& i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
+                          where IsGenericType(i) && i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
                                 !IsAbstract(t) &&
                                 !IsInterface(t)
                           select new
@@ -109,8 +128,9 @@ namespace AutoMapper.SelfConfig
 
             foreach (var map in mapsTo)
             {
-                Mapper.CreateMap(map.Source, map.Destination);
+                config.CreateMap(map.Source, map.Destination);
             }
+
         }
     }
 }

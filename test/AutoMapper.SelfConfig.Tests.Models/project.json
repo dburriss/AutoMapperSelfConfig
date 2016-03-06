@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-*",
+  "description": "TestModels Class Library",
+  "authors": [ "Devon" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "net46": { }
+  },
+  "dependencies": {
+    "AutoMapper.SelfConfig": "0.9.0-rc1-update1"
+  }
+}
