@@ -77,5 +77,24 @@ namespace AutoMapper.SelfConfig.Tests
             var mappings = config.CreateMapper().ConfigurationProvider.GetAllTypeMaps();
             Assert.True(mappings.Length == 0);
         }
+
+        [Fact]
+        public void LoadAllMappings_With4MapFromNoConfig_MapsAll()
+        {
+            var types = new Type[] { typeof(TestEasy), typeof(TestConfig) };
+            MappingConfigFactory.LoadAllMappings(types);
+            var mappings = Mapper.Instance.ConfigurationProvider.GetAllTypeMaps();
+            Assert.Equal(4, mappings.Length);
+        }
+
+        [Fact]
+        public void CreateConfiguration_With4MapFromNoConfig_MapsAll()
+        {
+            var types = new Type[] { typeof(TestEasy), typeof(TestConfig) };
+            var config = MappingConfigFactory.CreateConfiguration(types);
+            var mappings = config.CreateMapper().ConfigurationProvider.GetAllTypeMaps();
+            Assert.Equal(4, mappings.Length);
+        }
+
     }
 }

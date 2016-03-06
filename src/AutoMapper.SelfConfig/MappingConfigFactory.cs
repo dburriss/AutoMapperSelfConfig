@@ -7,9 +7,9 @@ namespace AutoMapper.SelfConfig
 {
     public class MappingConfigFactory
     {
-        public static IMapperConfiguration CreateConfiguration(IEnumerable<Type> types)
+        public static MapperConfiguration CreateConfiguration(IEnumerable<Type> types)
         {
-            IMapperConfiguration config = new MapperConfiguration(cfg =>
+            MapperConfiguration config = new MapperConfiguration(cfg =>
             {
                 LoadAllMappings(cfg, types);
             });
