@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{294DDB48-4B11-4A56-81B4-8A0C699B59AF}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig.Tests", "test\AutoMapper.SelfConfig.Tests\AutoMapper.SelfConfig.Tests.xproj", "{940A3CD3-E4B7-4505-98F7-A9126AD6281F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AutoMapper.SelfConfig.Tests.Models", "test\AutoMapper.SelfConfig.Tests.Models\AutoMapper.SelfConfig.Tests.Models.xproj", "{42F134FE-F8BB-432E-AEF3-27A7988F1C00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F933399-E18C-4278-A58C-846B860A1D12}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
