@@ -1,5 +1,9 @@
 # AutoMapper Self Config
 
+| DEV |MASTER|BLEEDING|NUGET|
+|-----|------|--------|-----|
+|[![CI status][1]][2]|[![Release Build status][3]][4]|[![MyGet CI][5]][6]|[![NuGet CI][7]][8]|
+
 > Updated to AutoMapper 5 in version 1.0.0
 
 I help create mappings for AutoMapper based on interfaces.
@@ -114,3 +118,12 @@ public class AutoMapperSetupTask : IRunAtStartup
     }
 }
 ```
+
+[1]: https://ci.appveyor.com/api/projects/status/b5htqjta1pw7gb6n?svg=true
+[2]: https://ci.appveyor.com/project/dburriss/automapperselfconfig
+[3]: https://ci.appveyor.com/api/projects/status/b5htqjta1pw7gb6n/branch/master?svg=true
+[4]: https://ci.appveyor.com/project/dburriss/automapperselfconfig/branch/master
+[5]: https://img.shields.io/myget/dburriss-ci/vpre/AutoMapper.SelfConfig.svg
+[6]: http://myget.org/gallery/dburriss-ci
+[7]: https://img.shields.io/nuget/v/AutoMapper.SelfConfig.svg
+[8]: https://www.nuget.org/packages/AutoMapper.SelfConfig/

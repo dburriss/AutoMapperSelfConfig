@@ -5,7 +5,8 @@
   "packOptions": {
     "tags": [ "command lifecycle aspnet core owin" ],
     "projectUrl": "https://github.com/dburriss/AspNetLifecycle",
-    "licenseUrl": "https://github.com/dburriss/AspNetLifecycle/blob/master/LICENSE"
+    "licenseUrl": "https://github.com/dburriss/AspNetLifecycle/blob/master/LICENSE",
+    "releaseNotes": "https://github.com/dburriss/AutoMapperSelfConfig/releases/tag/v1.0.0"
   },
 
   "frameworks": {
