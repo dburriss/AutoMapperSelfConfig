@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-
-namespace AutoMapper.SelfConfig
+﻿namespace AutoMapper.SelfConfig
 {
 	public interface IHaveCustomMappings
 	{
-		void CreateMappings(IMapperConfiguration configuration);
+		void CreateMappings(IMapperConfigurationExpression configuration);
 	}
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using static PhilosophicalMonkey.Reflect.OnTypes;
 
 namespace AutoMapper.SelfConfig
 {
     public class MappingConfigFactory
     {
-        public static MapperConfiguration CreateConfiguration(IEnumerable<Type> types)
+        public static MapperConfiguration CreateConfiguration(IList<Type> types)
         {
             MapperConfiguration config = new MapperConfiguration(cfg =>
             {
@@ -17,7 +17,7 @@ namespace AutoMapper.SelfConfig
             return config;
         }
 
-        public static void LoadAllMappings(IEnumerable<Type> types)
+        public static void LoadAllMappings(IList<Type> types)
         {
             Mapper.Initialize(
                 cfg =>
@@ -27,17 +27,17 @@ namespace AutoMapper.SelfConfig
                 });
         }
 
-        public static void LoadAllMappings(IMapperConfiguration config, IEnumerable<Type> types)
+        public static void LoadAllMappings(IMapperConfigurationExpression config, IList<Type> types)
         {
             LoadStandardMappings(config, types);
             LoadCustomMappings(config, types);
         }
 
-        public static void LoadCustomMappings(IMapperConfiguration config, IEnumerable<Type> types)
+        public static void LoadCustomMappings(IMapperConfigurationExpression config, IList<Type> types)
         {
             var instancesToMap = (from t in types
                                   from i in GetInterfaces(t)
-                                  where typeof(IHaveCustomMappings).IsAssignableFrom(t) &&
+                                  where IsAssignable(t, typeof(IHaveCustomMappings)) &&
                                         !IsAbstract(t) &&
                                         !IsInterface(t)
                                   select InitializeCustomMappingObject(t)).ToArray();
@@ -47,66 +47,22 @@ namespace AutoMapper.SelfConfig
                 map.CreateMappings(config);
             }
         }
-
-        private static IEnumerable<Type> GetInterfaces(Type type)
-        {
-#if COREFX
-            return type.GetTypeInfo().ImplementedInterfaces;
-#endif
-#if NET
-            return type.GetInterfaces().AsEnumerable();
-#endif
-            throw new NotImplementedException();
-        }
-
-        private static bool IsAbstract(Type type)
-        {
-#if COREFX
-            return type.GetTypeInfo().IsAbstract;
-#endif
-#if NET
-            return type.IsAbstract;
-#endif
-            throw new NotImplementedException();
-        }
-
-        private static bool IsInterface(Type type)
-        {
-#if COREFX
-            return type.GetTypeInfo().IsInterface;
-#endif
-#if NET
-            return type.IsInterface;
-#endif
-            throw new NotImplementedException();
-        }
-
-        private static bool IsGenericType(Type type)
-        {
-#if COREFX
-            return type.GetTypeInfo().IsGenericType;
-#endif
-#if NET
-            return type.IsGenericType;
-#endif
-            throw new NotImplementedException();
-        }
-
+        
         private static IHaveCustomMappings InitializeCustomMappingObject(Type t)
         {
             return (IHaveCustomMappings)Activator.CreateInstance(t, true);
         }
 
-        public static void LoadStandardMappings(IMapperConfiguration config, IEnumerable<Type> types)
+        public static void LoadStandardMappings(IMapperConfigurationExpression config, IList<Type> types)
         {
             var mapsFrom = (from t in types
-                            from i in t.GetInterfaces()
+                            from i in GetInterfaces(t)
                             where IsGenericType(i) && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
                                   !IsAbstract(t) &&
                                   !IsInterface(t)
                             select new
                             {
-                                Source = i.GetGenericArguments()[0],
+                                Source = GetGenericArguments(i).First(),
                                 Destination = t
                             }).ToArray();
 
@@ -116,14 +72,14 @@ namespace AutoMapper.SelfConfig
             }
 
             var mapsTo = (from t in types
-                          from i in t.GetInterfaces()
+                          from i in GetInterfaces(t)
                           where IsGenericType(i) && i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
                                 !IsAbstract(t) &&
                                 !IsInterface(t)
                           select new
                           {
                               Source = t,
-                              Destination = i.GetGenericArguments()[0]
+                              Destination = GetGenericArguments(i).First()
                           }).ToArray();
 
             foreach (var map in mapsTo)
