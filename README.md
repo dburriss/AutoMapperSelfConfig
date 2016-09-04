@@ -40,15 +40,16 @@ The advantage with the 2 way mapping is you can place all mappings on say your *
 
 ### IHaveCustomMapping
 
-> UPDATE: Parameter type changed from `IConfiguration` to `IMapperConfiguration` from version 0.10.0
-
 ```csharp
 public interface IHaveCustomMappings
 {
-    void CreateMappings(IMapperConfiguration configuration);
+    void CreateMappings(IMapperConfigurationExpression configuration);
 }
 ```
-   
+
+> UPDATE: Parameter type changed from `IConfiguration` to `IMapperConfiguration` from version 0.10.0
+> UPDATE: Parameter type changed from `IConfiguration` to `IMapperConfiguration` from version 1.0.0
+
 This is for when more complex mappings are required and allows you to directly interact with the [AutoMapper IConfiguration](https://github.com/AutoMapper/AutoMapper/wiki/Configuration).
 
 
